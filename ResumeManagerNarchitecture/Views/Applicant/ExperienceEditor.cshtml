@@ -1,0 +1,29 @@
+﻿@model FrameworkCore.Model.Experience
+
+
+@using (Html.BeginCollectionItem("Experiences"))
+{
+    @*<img src="@Url.Content("~/Content/images/draggable-icon.png")" style="cursor: move" alt="" />*@
+    <tr id="experienceRow">
+
+        <td>
+            @Html.HiddenFor(model => model.ExperienceId)
+            @Html.HiddenFor(model => model.ApplicantId)
+            @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.ValidationMessageFor(model => model.CompanyName)*@
+        </td>
+        <td>
+            @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.ValidationMessageFor(model => model.Designation)*@
+        </td>
+        <td>
+            @*@Html.EditorFor(model => model.YearsWorked, new { htmlAttributes = new { @class = "form-control" } })*@
+            @*@Html.ValidationMessageFor(model => model.YearsWorked)*@
+        </td>
+        <td>
+            <a href="#" class="deleteRow">Delete</a>
+        </td>
+    </tr>
+}
+
+

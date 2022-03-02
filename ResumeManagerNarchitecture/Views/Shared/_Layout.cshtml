@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">RESUME UPLOADER</a>
+                @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse">
+                @*<ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Applicant", "Index", "Applicant")</li>
+
+                </ul>*@
+                @Html.Action("Index","Menu")
+                <ul class="nav navbar-nav navbar-right ">
+                    @Html.Partial("_LoginPartial")
+
+                    @if (HttpContext.Current.Session["UserName"] != null)
+                     {
+                       <li><a href="#"><span class="glyphicon glyphicon-user">Welcome @WebGlobalMembers.CurrentLoginUserName</span></a></li>                           
+                       <li><a href="@Url.Action("Logout","Login")"><span class="glyphicon glyphicon-log-out">Logout</span></a></li>     
+
+                     }
+                </ul>
+              
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @if (TempData["UserMessage"] != null)
+        {
+            var message = (Framework.Service.Message)TempData["UserMessage"];
+            <div class="alert @message.CssClassName ">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>@message.Title</strong> @message.DisplayMessage
+            </div>
+        }
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

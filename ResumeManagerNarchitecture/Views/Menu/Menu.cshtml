@@ -1,0 +1,26 @@
+﻿
+@model IEnumerable<FrameworkCore.Model.Menu_List>
+@{ 
+    Layout = "";
+}
+
+@foreach (var item in Model.Where(x => x.M_PARENT_CODE == 0).GroupBy(obj => new { obj.M_CODE }).Distinct().ToList())
+{
+
+    <ul class="nav navbar-nav">
+        @foreach (var firstItem in Model.Where(x => x.M_PARENT_CODE == item.FirstOrDefault().M_CODE).ToList())
+        {
+            <li>
+                @if (firstItem.CONTROLLER_NAME == null && firstItem.ACTION_NAME == null)
+                {
+                    <a href="#">@firstItem.M_NAME</a>
+                }
+                else
+                {
+                    <a href="/@firstItem.CONTROLLER_NAME/@firstItem.ACTION_NAME">@firstItem.M_NAME</a>
+                }
+
+            </li>
+        }
+    </ul>
+}

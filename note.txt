@@ -1,0 +1,18 @@
+1. ubah default project di package manager console ke project yg ada file DbContext.
+
+2 enable-migrations
+
+3. add-migration InitialCreate
+
+4.update-database
+brs ini bakal update ke sqlserver
+
+Kalau ubah primKey dr int ke string, pas update-database bakal ada error:
+Identity column 'Id' must be of data type int, bigint, smallint, tinyint, or decimal or numeric with a scale of 0,
+ and constrained to be nonnullable.
+
+solusi: harus ubah file migration dr alterColumn jadi dropColumn & addColumn.
+
+Supaya column jadi non nullable maka kasih data annotation 
+[DatabaseGenerated(DatabaseGeneratedOption.None)]
+tp pas tulis [Required] juga jadi non null
