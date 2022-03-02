@@ -18,6 +18,7 @@ namespace ResumeManagerNarchitecture.Controllers
 
         public ApplicantController()
         {
+            //test git
             _applicantService = ObjServiceExtension.CreateInstanceApplicantService();
             _appAutoNumberLastService = ObjServiceExtension.CreateInstanceAppAutoNumberLastService();
         }
